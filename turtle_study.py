@@ -1,61 +1,49 @@
 from turtle import Turtle
 
-t = Turtle()
+t= Turtle()
+t.speed(1)
+
+def quantidade_para_frente():
+    respondendo = int(input('Quantos pixels devemos ir para frente? '))
+    return respondendo
+
+def quantidade_para_tras():
+    respondendo = int(input('Quantos pixels devemos movimentar para trás? '))
+    return respondendo
+
+def rotacionar(turtle):
+    rotacionando = input('Rotacionar a direita(d), esquerda(e) ou não rotacionar(n)? ')
+    if rotacionando == 'd':
+        rotacionar_para_direita(turtle)
+    if rotacionando == 'e':
+        rotacionar_para_esquerda(turtle)
+           
+def rotacionar_para_direita(turtle):
+    rotacao_direita = int(input('Quantos pixels devemos ir para a direita? '))
+    t.right(rotacao_direita)
+
+def rotacionar_para_esquerda(turtle):
+    rotacao_esquerda = int(input('Quantos pixels devemos ir para a esquerda? '))
+    t.left(rotacao_esquerda)
+     
 
 while True:
-    frente_tras = input('Para qual direção devemos ir? "frente(f)" ou "para trás(t)":')
-    if frente_tras == 'f':
-        distancia_frente_tras = int(input('Quantos pixels devemos ir para a frente:'))
-        rotacionar = input("Rotacionar para d: direita, e: esquerda ou n: não rotacionar?")
-        if rotacionar == 'd':
-            direita = int(input('Quantos pixels devemos rotacionar para a direita?:'))
-            t.right(direita)
-            t.forward(distancia_frente_tras)
-        
+    frente_ou_tras = input('Para qual direção ir? (F) ou (T)? ')
 
-            
-        if rotacionar == 'e':
-            esquerda = int(input('Qauntos pixels devemos rotacionar para a esquerda?'))
-            t.left(esquerda)
-            t.forward(distancia_frente_tras)
-            
-        
-        if rotacionar == 'n':
-            saida = input('Deseja continuar andando(s/ n):')
-            t.forward(distancia_frente_tras)    
-        
-        
-            
-    elif frente_tras == 't':
-         distancia_tras = int(input('Quantos pixels devemos ir para a trás:'))
-         rotacionar = input("Rotacionar para d: direita, e: esquerda ou n: não rotacionar?")
-         if rotacionar == 'd':
-            direita_t = int(input('Quantos pixels devemos rotacionar para a direita?:'))
-            t.right(direita_t)
-            t.backward(distancia_tras)
-         
-                
-         
+    if frente_ou_tras == 'F' or frente_ou_tras == 'f':
+        pixels_para_frente = quantidade_para_frente()
+        rotacionar(t)
+        t.forward(pixels_para_frente)
+
+
+    if frente_ou_tras == 't' or frente_ou_tras == 'T':
+        pixels_para_tras = quantidade_para_tras()
+        rotacionar(t)
+        t.backward(pixels_para_tras)
     
-            
-         if rotacionar == 'e':
-            esquerda_t = int(input('Quantos pixels devemos rotacionar para a esquerda?'))
-            t.left(esquerda_t)
-            t.backward(distancia_tras)
-            
-         
-        
-         if rotacionar == 'n':
-            saida = input('Deseja continuar andando(s/ n):') 
-            t.backward(distancia_tras)   
-            
-            
-    saida = input('Deseja continuar andando(s/ n):')
-    if saida == 's':
-        continue
-    elif saida == 'n':
+    resposta = input('Deseja continuar andando(S / N)? ')
+    
+    if resposta not in ('sim','s'):
         break
-         
-         
-         
-input()
+
+    
